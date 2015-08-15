@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  company_name: MyString
+  company_info: MyString
+  description: MyText
+  expired: false
+
+two:
+  title: MyString
+  company_name: MyString
+  company_info: MyString
+  description: MyText
+  expired: false

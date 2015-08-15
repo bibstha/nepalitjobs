@@ -1,0 +1,29 @@
+= form_for(@job) do |f|
+  div.field
+    = f.label "Job Title"
+    = f.text_field :title
+  div.field
+    = f.label "Category"
+  div.field
+    = f.label "Location"
+    = f.text_field :address
+  div.field
+    = f.label "Job Description"
+    = f.text_area :description
+  div.field
+    = f.label "How do people apply to this position?"
+    = f.text_area :apply_process
+  hr
+  h1 Tell us about your company
+  div.field
+    = f.label "Name"
+    = f.text_field :company_name
+  div.field
+    = f.label "URL"
+    = f.text_field :company_url
+  div.field
+    = f.label "Email"
+    = f.text_field :company_email
+
+  div.field
+    = f.submit "Step 2: Preview your ad"
