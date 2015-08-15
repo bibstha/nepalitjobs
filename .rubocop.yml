@@ -1,0 +1,61 @@
+AllCops:
+  DisplayCopNames: true
+
+### Metrics
+
+Metrics/LineLength:
+  Max: 119
+
+Metrics/MethodLength:
+  Enabled: true
+  CountComments: false # count full line comments?
+  Max: 10
+  Severity: refactor
+
+### Style
+
+Style/AlignHash:
+  EnforcedColonStyle: table
+  EnforcedHashRocketStyle: table
+
+Style/HashSyntax:
+  EnforcedStyle: ruby19
+
+Style/MultilineOperationIndentation:
+  Description: Checks indentation of binary operations that span more than one line.
+  EnforcedStyle: indented
+
+Style/RaiseArgs:
+  EnforcedStyle: compact
+
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/PerlBackrefs:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/NumericLiterals:
+  Description: Add underscores to large numeric literals to improve their readability.
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide#underscores-in-numerics
+  Enabled: false
+
+### RSpec
+
+RSpec/ExampleWording:
+  IgnoredWords:
+    - only
+  CustomTransform:
+    have: has
+

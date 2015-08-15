@@ -12,20 +12,18 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20150815180452) do
-
   create_table "jobs", force: true do |t|
-    t.string   "title"
-    t.string   "company_name"
-    t.text     "description"
-    t.boolean  "expired"
+    t.string "title"
+    t.string "company_name"
+    t.text "description"
+    t.boolean "expired"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "published_at"
-    t.string   "company_url"
-    t.string   "company_email"
-    t.string   "address"
-    t.text     "apply_process"
-    t.datetime "submitted_at"
+    t.string "company_url"
+    t.string "company_email"
+    t.string "address"
+    t.text "apply_process"
+    t.datetime "completed_at"
   end
-
 end

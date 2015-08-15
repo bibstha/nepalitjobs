@@ -1,3 +1,13 @@
+- if @job.errors.any?
+  div#error_explanation
+    h2
+      = pluralize(@job.errors.count, "error")
+      |  prohibited this job from being saved:
+
+    ul
+      - @job.errors.full_messages.each do |msg|
+        li = msg
+
 = form_for(@job) do |f|
   div.field
     = f.label "Job Title"

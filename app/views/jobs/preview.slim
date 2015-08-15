@@ -1,0 +1,5 @@
+h1 = @job.title
+div = @job.address
+
+= link_to "Edit", edit_job_path(@job)
+= link_to "Submit", complete_job_path(@job), method: :post
