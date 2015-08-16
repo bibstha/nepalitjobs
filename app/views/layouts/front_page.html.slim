@@ -23,7 +23,7 @@ html lang="en"
   body
     .container
       .page-header
-        h1 Nepal Information Technology Job Board
+        h1 Nepal IT Job Board
         .row
           p.lead.col-lg-6
             ' is a Fast, Free and Modern place to post and find
@@ -37,7 +37,7 @@ html lang="en"
               = text_field_tag :search, "", class: "form-control", placeholder: "Search: Laravel, Rails, Angular.js"
 
         .col-md-3.col-md-offset-1
-          a.btn.btn-danger.btn-lg Post a job
+          = link_to "Post a job", new_job_path, class: "btn btn-danger btn-lg"
 
     .container
       .row

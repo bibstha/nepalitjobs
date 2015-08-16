@@ -1,6 +1,7 @@
 class Job < ActiveRecord::Base
   acts_as_paranoid
 
+  belongs_to :category
   validates_presence_of(:title, :address, :description, :apply_process,
                         :company_name, :company_url, :company_email)
 

@@ -24,6 +24,7 @@ class JobsController < ApplicationController
 
   def new
     @job = Job.new
+    @job.category_id = Category.find_by_name("Design").id
   end
 
   def edit
@@ -49,6 +50,6 @@ class JobsController < ApplicationController
 
   def job_params
     params.require(:job).permit(:title, :address, :description, :apply_process,
-                                :company_name, :company_url, :company_email)
+                                :company_name, :company_url, :company_email, :category_id)
   end
 end

@@ -5,7 +5,7 @@ class CreateJobs < ActiveRecord::Migration
       t.string :company_name
       t.string :company_info
       t.text :description
-      t.boolean :expired
+      t.boolean :expired, null: false, default: false
 
       t.timestamps
     end

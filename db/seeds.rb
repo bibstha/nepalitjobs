@@ -5,3 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+if Category.count == 0
+  Category.create([
+    { name: "Design" },
+    { name: "Programming" },
+    { name: "Business/Exec" },
+    { name: "System administration" },
+    { name: "Customer Service/Support" },
+    { name: "Miscellaneous" }
+  ])
+end

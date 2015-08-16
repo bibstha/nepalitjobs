@@ -19,6 +19,11 @@
   div.form-group
     = f.label "Category", class: "col-sm-2 control-label"
     .col-sm-8
+      - Category.all.each do |category|
+        .radio
+          label
+            = f.radio_button :category_id, category.id
+            = category.name
 
   div.form-group
     = f.label "Location", class: "col-sm-2 control-label"
