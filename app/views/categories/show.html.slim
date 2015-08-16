@@ -1,0 +1,13 @@
+= render "search_bar"
+
+h3 #{@category.name} Jobs
+
+- @category.latest_jobs.each do |job|
+  .job_teaser
+    => job.company_name
+    ' / #{link_to job.title, job}
+    ' / #{job.address}
+    ' / #{job.completed_at.strftime('%Y %b %d')}
+
+.job_teaser
+  = link_to "← Back to all jobs", root_path

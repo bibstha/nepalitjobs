@@ -1,4 +1,7 @@
 .row
   .col-md-6
     = link_to "← Back to all jobs", root_path
+  .col-md-6.text-right
+    = link_to "See more #{@job.category.name} Jobs →", @job.category
+
 = render "detail"

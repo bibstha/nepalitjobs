@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :categories, only: :show
+
   resources :jobs, except: [:destroy] do
     get :search, on: :collection
     member do
