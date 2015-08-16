@@ -23,3 +23,10 @@
 body {
   margin-bottom: 90px;
 }
+
+.job_teaser {
+  border-bottom: 1px solid #cccccc;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  font-size: 1.3em;
+}
