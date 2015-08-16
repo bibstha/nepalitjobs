@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+  layout "admin"
   http_basic_authenticate_with name: "bibstha", password: "secret"
 
   def list_jobs
@@ -27,6 +28,11 @@ class AdminController < ApplicationController
     job = Job.find_completed(params[:admin_job_id])
     job.unexpire
     redirect_to(:admin_list_jobs)
+  end
+
+  def show
+    @job = Job.find(params[:id])
+    render "jobs/show"
   end
 
   def destroy

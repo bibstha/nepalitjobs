@@ -13,13 +13,14 @@ Rails.application.routes.draw do
     get :list_jobs
   end
 
-  scope '/admin' do
-    resources :jobs, only: [:destroy], controller: "admin", as: "admin_jobs" do
+  scope "/admin" do
+    resources :jobs, only: [:show, :destroy], controller: "admin", as: "admin_jobs" do
       post :publish
       post :unpublish
       post :expire
       post :unexpire
     end
+    get "/", to: redirect("admin/list_jobs")
   end
 
   root "jobs#index"
