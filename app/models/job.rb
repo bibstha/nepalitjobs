@@ -42,6 +42,11 @@ class Job < ActiveRecord::Base
     save
   end
 
+  def incomplete
+    self.completed_at = nil
+    save
+  end
+
   def publishable?
     completed_at? && !(published_at? || expired?)
   end

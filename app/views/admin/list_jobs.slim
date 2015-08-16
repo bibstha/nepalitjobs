@@ -13,6 +13,9 @@ table.table.table-striped
         td = job.completed_at
         td = job.published_at
         td
+          - if job.completed_at?
+            => link_to "Make Incomplete", admin_job_incomplete_path(job), method: :post, class: "btn btn-xs btn-default"
+
           - if job.publishable?
             => link_to "Publish", admin_job_publish_path(job), method: :post, class: "btn btn-xs btn-default"
           - elsif job.published_at?

@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       post :unpublish
       post :expire
       post :unexpire
+      post :incomplete
+
     end
     get "/", to: redirect("admin/list_jobs")
   end

@@ -30,6 +30,12 @@ class AdminController < ApplicationController
     redirect_to(:admin_list_jobs)
   end
 
+  def incomplete
+    job = Job.find(params[:admin_job_id])
+    job.incomplete
+    redirect_to(:admin_list_jobs)
+  end
+
   def show
     @job = Job.find(params[:id])
     render "jobs/show"
