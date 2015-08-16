@@ -5,7 +5,6 @@ class JobsController < ApplicationController
   end
 
   def search
-
   end
 
   def preview

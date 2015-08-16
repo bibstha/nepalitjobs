@@ -5,3 +5,21 @@
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require twitter-bootstrap-static/fontawesome
   */
+#job_description {
+  height: 250px;
+}
+
+.form-horizontal .control-label{
+  text-align:left;
+  /* background-color:#ffa; */
+}
+
+
+.field_with_errors input, .field_with_errors textarea {
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  border-color: #a94442;
+}
+
+body {
+  margin-bottom: 90px;
+}

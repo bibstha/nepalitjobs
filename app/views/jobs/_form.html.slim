@@ -1,6 +1,6 @@
 - if @job.errors.any?
-  div#error_explanation
-    h2
+  div#error_explanation.text-danger
+    h5
       = pluralize(@job.errors.count, "error")
       |  prohibited this job from being saved:
 
@@ -8,32 +8,57 @@
       - @job.errors.full_messages.each do |msg|
         li = msg
 
-= form_for(@job) do |f|
-  div.field
-    = f.label "Job Title"
-    = f.text_field :title
-  div.field
-    = f.label "Category"
-  div.field
-    = f.label "Location"
-    = f.text_field :address
-  div.field
-    = f.label "Job Description"
-    = f.text_area :description
-  div.field
-    = f.label "How do people apply to this position?"
-    = f.text_area :apply_process
-  hr
-  h1 Tell us about your company
-  div.field
-    = f.label "Name"
-    = f.text_field :company_name
-  div.field
-    = f.label "URL"
-    = f.text_field :company_url
-  div.field
-    = f.label "Email"
-    = f.text_field :company_email
+= form_for(@job, html: { class: "form-horizontal" }) do |f|
+  h4 Tell us about the position
+  div.form-group
+    = f.label "Job Title", class: "col-sm-2 control-label"
+    .col-sm-8
+      = f.text_field :title, class: "form-control input-lg"
+      .help-block "Senior PHP Programmer" or "Web Designer"
 
-  div.field
-    = f.submit "Step 2: Preview your ad"
+  div.form-group
+    = f.label "Category", class: "col-sm-2 control-label"
+    .col-sm-8
+
+  div.form-group
+    = f.label "Location", class: "col-sm-2 control-label"
+    .col-sm-8
+      = f.text_field :address, class: "form-control input-lg"
+      .help-block "Chakupat, Lalitpur", "Lazimpat, Kathmandu"
+
+  div.form-group
+    = f.label "Job Description", class: "col-sm-12 control-label"
+    .col-sm-12
+      = f.text_area :description, class: "form-control input-lg"
+
+  div.form-group
+    .col-sm-12
+      = f.label "How do people apply to this position?", class: "control-label"
+      .help-block Example: Send us a resume to myemail@company.com.
+    .col-sm-12
+      = f.text_area :apply_process, rows: 3, class: "form-control"
+
+  hr
+
+  h4 Tell us about your company
+  div.form-group
+    = f.label "Name", class: "col-sm-2 control-label"
+    .col-sm-8
+      = f.text_field :company_name, class: "form-control input-lg"
+      .help-block Enter your company or organization’s name.
+
+  div.form-group
+    = f.label "URL", class: "col-sm-2 control-label"
+    .col-sm-8
+      = f.text_field :company_url, class: "form-control input-lg"
+      .help-block Example: http://www.google.com
+
+  div.form-group
+    = f.label "Email", class: "col-sm-2 control-label"
+    .col-sm-8
+      = f.text_field :company_email, class: "form-control input-lg"
+      .help-block You will receive a confirmation email here.
+
+  div.form-group
+    .col-sm-offset-2.col-sm-8
+      = f.submit "Continue to Step 2: Preview your ad", class: "btn btn-danger btn-lg"

@@ -1,0 +1,17 @@
+div.page-header
+  h1= @job.title
+  p Posted on #{@job.created_at.strftime('%Y %b %d')}
+  p.lead
+    strong
+    |
+      #{@job.company_name} <br>
+      Location: #{@job.address} <br>
+      #{link_to @job.company_url, @job.company_url}
+
+p== @job.description_pretty
+
+div.well
+  p
+    strong> How to Apply?
+    | #{{@job.apply_process_pretty}}
+
