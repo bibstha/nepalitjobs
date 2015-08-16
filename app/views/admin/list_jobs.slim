@@ -1,0 +1,26 @@
+table
+  thead
+    tr
+      th Title
+      th Company
+      th Completed At
+      th Published At
+  tbody
+    - @jobs.each do |job|
+      tr
+        td = job.title
+        td = job.company_name
+        td = job.completed_at
+        td = job.published_at
+        td
+          - if job.publishable?
+            = link_to "Publish", admin_job_publish_path(job), method: :post
+          - elsif job.published_at?
+            = link_to "Unpublish", admin_job_unpublish_path(job), method: :post
+
+          - if job.expired?
+            = link_to "Unexpire", admin_job_unexpire_path(job), method: :post
+          - else
+            = link_to "Expire", admin_job_expire_path(job), method: :post
+
+          = link_to "Delete", admin_job_path(job), method: :delete

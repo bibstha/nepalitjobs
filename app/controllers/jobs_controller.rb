@@ -1,6 +1,11 @@
 class JobsController < ApplicationController
   def index
-    @jobs = Job.latest_jobs
+    @jobs = Job.latest_jobs || []
+    render layout: "front_page"
+  end
+
+  def search
+
   end
 
   def preview
@@ -22,14 +27,23 @@ class JobsController < ApplicationController
     @job = Job.new
   end
 
+  def edit
+    @job = Job.find_uncompleted(params[:id])
+  end
+
   def create
     @job = Job.new(job_params)
     if @job.save
-      return redirect_to preview_job_path(@job) if @job.completed_at
-      redirect_to @job
+      return redirect_to preview_job_path(@job)
     else
       render :new
     end
+  end
+
+  def update
+    job = Job.find_uncompleted(params[:id])
+    job.update!(job_params)
+    redirect_to(preview_job_path(job))
   end
 
   private

@@ -1,0 +1,12 @@
+h3 Job List
+
+- @jobs.each do |job|
+  div
+    => job.company_name
+    ' /
+    => link_to job.title, job
+    ' /
+    => job.address
+    ' (#{job.completed_at.strftime('%Y %b %d')})
+
+
