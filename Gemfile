@@ -17,7 +17,10 @@ gem "twitter-bootstrap-rails"
 gem "redcarpet"
 gem "elasticsearch-model"
 
-gem "rails_12factor", group: :production
+group :production do
+  gem "rails_12factor"
+  gem "thin"
+end
 
 gem "sdoc", "~> 0.4.0", group: :doc
 
