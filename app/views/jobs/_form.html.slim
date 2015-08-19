@@ -9,6 +9,7 @@
         li = msg
 
 = form_for(@job, html: { class: "form-horizontal" }) do |f|
+  = f.hidden_field :edit_token
   h4 Tell us about the position
   div.form-group
     = f.label "Job Title", class: "col-sm-2 control-label"

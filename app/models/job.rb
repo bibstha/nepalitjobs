@@ -1,25 +1,40 @@
 class Job < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   acts_as_paranoid
 
   belongs_to :category
   validates_presence_of(:title, :address, :description, :apply_process,
                         :company_name, :company_url, :company_email)
 
-  def self.latest_jobs
-    where(expired: false).where.not(published_at: nil).order(published_at: :desc)
-    # jobs.limit(30) if all
+  class << self
+    def latest_jobs
+      where(expired: false).where.not(published_at: nil).order(published_at: :desc)
+      # jobs.limit(30) if all
+    end
+
+    # def find_uncompleted(id)
+    #   where(id: id, completed_at: nil).first || raise(ActiveRecord::RecordNotFound)
+    # end
+
+    def find_completed(id)
+      where(id: id).where.not(completed_at: nil).first || raise(ActiveRecord::RecordNotFound)
+    end
+
+    def list_all
+      order(completed_at: :desc)
+    end
+
+    # def search(query)
+    #   binding.pry
+    # end
   end
 
-  def self.find_uncompleted(id)
-    where(id: id, completed_at: nil).first || raise(ActiveRecord::RecordNotFound)
-  end
-
-  def self.find_completed(id)
-    where(id: id).where.not(completed_at: nil).first || raise(ActiveRecord::RecordNotFound)
-  end
-
-  def self.list_all
-    order(completed_at: :desc)
+  def send_confirmation_email
+    # Synchronous email sending
+    update(email_verification_token: SecureRandom.uuid)
+    JobMailer.confirm_email(self).deliver!
   end
 
   def publish

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do
       get :preview
       post :complete
+      post :email_verify
     end
   end
 

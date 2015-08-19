@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
+  body
+    p To #{@job.company_name},
+    p
+      ' You recently posted an Ad via NepalITJobs titled
+      strong #{@job.title}.
+      ' You can preview your Ad #{preview_job_link_with_token(@job, "here")}.
+    p
+      |
+        Please click this #{email_verify_link_with_token(@job, "link")} to verify your email address. After your email
+        has been verified, your Ad will appear in NepalITJobs's homepage.
+    p
+      |
+        If you have any questions, please contact us via Twitter #{twitter_link} or send us an email to
+        #{mail_to(Rails.configuration.mail_from)}
+    p
+      |
+        Thank you,<br>
+        Bibek Shrestha,<br>
+        #{link_to("NepalITJobs Team", root_url)}

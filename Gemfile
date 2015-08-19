@@ -15,8 +15,9 @@ gem "slim-rails"
 gem "paranoia", "~> 2.0"
 gem "twitter-bootstrap-rails"
 gem "redcarpet"
+gem "elasticsearch-model"
 
-gem 'rails_12factor', group: :production
+gem "rails_12factor", group: :production
 
 gem "sdoc", "~> 0.4.0", group: :doc
 

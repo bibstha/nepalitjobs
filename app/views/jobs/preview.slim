@@ -2,6 +2,6 @@
 
 .row.preview-actions
   .col-md-6
-    => link_to "Make More Changes", edit_job_path(@job), class: "btn btn-default btn-lg"
+    => link_to "Make More Changes", edit_job_path(@job, edit_token: @job.edit_token), class: "btn btn-default btn-lg"
   .col-md-6.text-right
-    => link_to "All Good? Finish", complete_job_path(@job), method: :post, class: "btn btn-danger btn-lg"
+    => complete_job_link_with_token(@job, "All Good? Finish", method: :post, class: "btn btn-danger btn-lg")
