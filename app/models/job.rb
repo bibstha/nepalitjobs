@@ -18,8 +18,8 @@ class Job < ActiveRecord::Base
     #   where(id: id, completed_at: nil).first || raise(ActiveRecord::RecordNotFound)
     # end
 
-    def find_completed(id)
-      where(id: id).where.not(completed_at: nil).first || raise(ActiveRecord::RecordNotFound)
+    def find_published(id)
+      where(id: id).where.not(published_at: nil).first || raise(ActiveRecord::RecordNotFound)
     end
 
     def list_all
@@ -31,15 +31,13 @@ class Job < ActiveRecord::Base
     # end
   end
 
-  def send_confirmation_email
-    # Synchronous email sending
+  def complete
     update(email_verification_token: SecureRandom.uuid)
     JobMailer.confirm_email(self).deliver!
   end
 
   def publish
-    self.published_at = Time.now.utc
-    save
+    update!(email_status: "verified", published_at: Time.now.utc)
   end
 
   def unpublish

@@ -14,14 +14,21 @@ class JobsController < ApplicationController
 
   def complete
     @job = Job.find_by_id_and_edit_token!(params[:id], params[:edit_token])
-    @job.send_confirmation_email
+    @job.complete
     flash[:notice] = "We have sent you an email at #{@job.company_email} with a link to Publish this ad. You must" \
       " click the link for this Ad to appear in our homepage."
     redirect_to(preview_job_path(@job, edit_token: params[:edit_token]))
   end
 
+  def email_verify
+    @job = Job.find_by_id_and_email_verification_token!(params[:id], params[:token])
+    @job.publish
+    flash[:notice] = "Your Ad has been published."
+    redirect_to(@job)
+  end
+
   def show
-    @job = Job.find_completed(params[:id])
+    @job = Job.find_published(params[:id])
   end
 
   def new

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     member do
       get :preview
       post :complete
-      post :email_verify
+      get :email_verify
     end
   end
 
@@ -21,7 +21,6 @@ Rails.application.routes.draw do
       post :expire
       post :unexpire
       post :incomplete
-
     end
     get "/", to: redirect("admin/list_jobs")
   end
