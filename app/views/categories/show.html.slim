@@ -7,7 +7,7 @@ h3 #{@category.name} Jobs
     => job.company_name
     ' / #{link_to job.title, job}
     ' / #{job.address}
-    ' / #{job.completed_at.strftime('%Y %b %d')}
+    ' / #{job.published_at.strftime('%Y %b %d')}
 
 .job_teaser
   = link_to "← Back to all jobs", root_path

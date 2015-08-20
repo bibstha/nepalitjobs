@@ -14,21 +14,13 @@ class Job < ActiveRecord::Base
       # jobs.limit(30) if all
     end
 
-    # def find_uncompleted(id)
-    #   where(id: id, completed_at: nil).first || raise(ActiveRecord::RecordNotFound)
-    # end
-
     def find_published(id)
       where(id: id).where.not(published_at: nil).first || raise(ActiveRecord::RecordNotFound)
     end
 
     def list_all
-      order(completed_at: :desc)
+      order(published_at: :desc)
     end
-
-    # def search(query)
-    #   binding.pry
-    # end
   end
 
   def complete
@@ -41,27 +33,15 @@ class Job < ActiveRecord::Base
   end
 
   def unpublish
-    self.published_at = nil
-    save
+    self.update!(published_at: nil)
   end
 
   def expire
-    self.expired = true
-    save
+    self.update!(expired: true)
   end
 
   def unexpire
-    self.expired = false
-    save
-  end
-
-  def incomplete
-    self.completed_at = nil
-    save
-  end
-
-  def publishable?
-    completed_at? && !(published_at? || expired?)
+    self.update!(expired: false)
   end
 
   def description_pretty
