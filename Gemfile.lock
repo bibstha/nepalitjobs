@@ -41,6 +41,10 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     daemons (1.2.3)
+    dotenv (2.0.2)
+    dotenv-rails (2.0.2)
+      dotenv (= 2.0.2)
+      railties (~> 4.0)
     elasticsearch (1.0.12)
       elasticsearch-api (= 1.0.12)
       elasticsearch-transport (= 1.0.12)
@@ -169,6 +173,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   coffee-rails (~> 4.0.0)
+  dotenv-rails
   elasticsearch-model
   jbuilder (~> 2.0)
   jquery-rails

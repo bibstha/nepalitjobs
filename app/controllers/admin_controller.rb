@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   layout "admin"
-  http_basic_authenticate_with name: "bibstha", password: "secret"
+  http_basic_authenticate_with name: ENV['ADMIN_USERNAME'], password: ENV['ADMIN_PASSWORD']
 
   def list_jobs
     @jobs = Job.list_all
