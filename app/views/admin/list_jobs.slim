@@ -11,4 +11,4 @@ table.table.table-striped
         td = link_to(job.title, admin_job_path(job))
         td = job.company_name
         td = job.published_at
-        td
+        td = preview_job_link_with_token(job, "Preview")
