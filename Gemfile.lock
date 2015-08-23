@@ -54,6 +54,7 @@ GEM
       activesupport (> 3)
       elasticsearch (> 0.4)
       hashie
+    elasticsearch-rails (0.1.7)
     elasticsearch-transport (1.0.12)
       faraday
       multi_json
@@ -177,6 +178,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   dotenv-rails
   elasticsearch-model
+  elasticsearch-rails
   jbuilder (~> 2.0)
   jquery-rails
   metamagic
