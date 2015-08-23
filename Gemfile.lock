@@ -74,6 +74,8 @@ GEM
     json (1.8.3)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    metamagic (3.1.7)
+      rails (>= 3.0.0)
     mime-types (2.6.1)
     minitest (5.8.0)
     multi_json (1.11.2)
@@ -177,6 +179,7 @@ DEPENDENCIES
   elasticsearch-model
   jbuilder (~> 2.0)
   jquery-rails
+  metamagic
   paranoia (~> 2.0)
   pg
   rails (= 4.1.8)

@@ -16,6 +16,7 @@ gem "paranoia", "~> 2.0"
 gem "twitter-bootstrap-rails"
 gem "redcarpet"
 gem "elasticsearch-model"
+gem "metamagic"
 
 group :production do
   gem "rails_12factor"
