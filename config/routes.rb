@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'pages/about'
+
   resources :categories, only: :show
 
   resources :jobs, except: [:destroy] do
@@ -24,4 +26,5 @@ Rails.application.routes.draw do
   end
 
   root "jobs#index"
+  get "/about" => "pages#about"
 end

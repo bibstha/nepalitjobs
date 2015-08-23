@@ -31,8 +31,12 @@ body {
   font-size: 1.3em;
 }
 
-.app-header {
+.about {
+  font-size: 1.3em;
+}
 
+.about p {
+  margin-top: 30px;
 }
 
 .preview-actions {
