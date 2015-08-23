@@ -5,7 +5,7 @@ class JobsController < ApplicationController
   end
 
   def search
-    @jobs = Job.search(params[:search])
+    @jobs = Job.search(params[:term])
     render layout: "front_page"
   end
 

@@ -22,8 +22,10 @@ class Job < ActiveRecord::Base
       order(published_at: :desc)
     end
 
-    def search(query)
-      __elasticsearch__.search(query).records.to_a.delete_if { |job| job.published_at.nil? }
+    def search(term)
+      require 'html/sanitizer'
+      sanitized_term = HTML::FullSanitizer.new.sanitize(term)
+      __elasticsearch__.search(sanitized_term).records.to_a.delete_if { |job| job.published_at.nil? }
     end
   end
 
