@@ -1,1 +1,5 @@
-Search results
+h3 Results for "#{params[:search]}"
+
+= render partial: "shared/job_list", locals: { jobs: @jobs }
+.job_teaser
+  = link_to "← Back to all jobs", root_path

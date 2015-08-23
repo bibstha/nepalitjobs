@@ -1,0 +1,8 @@
+- jobs.each do |job|
+  div.job_teaser
+    => job.company_name
+    ' / #{link_to job.title, job}
+    ' / #{job.address}
+    ' / #{job.published_at.strftime('%Y %b %d')}
+
+

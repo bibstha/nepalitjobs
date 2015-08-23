@@ -21,6 +21,10 @@ class Job < ActiveRecord::Base
     def list_all
       order(published_at: :desc)
     end
+
+    def search(query)
+      __elasticsearch__.search(query).records.to_a.delete_if { |job| job.published_at.nil? }
+    end
   end
 
   def email_verified?
