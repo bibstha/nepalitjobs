@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     get :search, on: :collection
     member do
       get :preview
-      post :complete
+      post :publish
+      post :unpublish
       get :email_verify
     end
   end
@@ -18,9 +19,6 @@ Rails.application.routes.draw do
     resources :jobs, only: [:show, :destroy], controller: "admin", as: "admin_jobs" do
       post :publish
       post :unpublish
-      post :expire
-      post :unexpire
-      post :incomplete
     end
     get "/", to: redirect("admin/list_jobs")
   end

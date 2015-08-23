@@ -5,13 +5,15 @@ html
   body
     p To #{@job.company_name},
     p
-      ' You recently posted an Ad via NepalITJobs titled <strong>#{@job.title}</strong>. You can
-      ' <strong>preview</strong> or <strong>edit</strong> your Ad
-      ' #{preview_job_link_with_token(@job, "here")}.
+      ' You recently posted an Ad via NepalITJobs titled <strong>#{@job.title}</strong>.
     p
       |
         Please click this #{email_verify_link_with_token(@job, "link")} to verify your email address. After your email
         has been verified, your Ad will appear in NepalITJobs's homepage.
+    p
+      |
+        You can <strong>preview</strong> or <strong>edit</strong> your Ad
+        #{preview_job_link_with_token(@job, "here")}.
     p
       |
         If you have any questions, please contact us via Twitter #{twitter_link} or send us an email to

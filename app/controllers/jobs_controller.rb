@@ -12,18 +12,23 @@ class JobsController < ApplicationController
     @job = Job.find_by_id_and_edit_token!(params[:id], params[:edit_token])
   end
 
-  def complete
+  # POST job/:id/publish
+  # User decides to publish
+  # Publishes the job if the job has been verified
+  # Sends an email if the job hasn't been verified
+  def publish
     @job = Job.find_by_id_and_edit_token!(params[:id], params[:edit_token])
-    @job.complete
-    flash[:notice] = "We have sent you an email at #{@job.company_email} with a link to Publish this ad. You must" \
-      " click the link for this Ad to appear in our homepage."
-    redirect_to(preview_job_path(@job, edit_token: params[:edit_token]))
+    if @job.email_verified?
+      job_update
+    else
+      job_send_verification_email
+    end
   end
 
   def email_verify
     @job = Job.find_by_id_and_email_verification_token!(params[:id], params[:token])
     @job.publish
-    flash[:notice] = "Your Ad has been published."
+    flash[:notice] = "Your Ad has been published. To edit it again, please use the edit link in your email."
     redirect_to(@job)
   end
 
@@ -58,6 +63,19 @@ class JobsController < ApplicationController
   end
 
   private
+
+  def job_update
+    @job.publish
+    flash[:notice] = "Your job has been published."
+    redirect_to(@job)
+  end
+
+  def job_send_verification_email
+    @job.send_verification_email
+    flash[:notice] = "We have sent you an email at #{@job.company_email} with a link to Publish this ad. You must" \
+      " click the link for this Ad to appear in our homepage."
+    redirect_to(preview_job_path(@job, edit_token: params[:edit_token]))
+  end
 
   def job_params
     params.require(:job).permit(:title, :address, :description, :apply_process,

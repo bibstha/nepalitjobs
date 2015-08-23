@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   layout "admin"
-  http_basic_authenticate_with name: ENV['ADMIN_USERNAME'], password: ENV['ADMIN_PASSWORD']
+  http_basic_authenticate_with name: ENV["ADMIN_USERNAME"], password: ENV["ADMIN_PASSWORD"]
 
   def list_jobs
     @jobs = Job.list_all
@@ -15,24 +15,6 @@ class AdminController < ApplicationController
   def unpublish
     job = Job.find_completed(params[:admin_job_id])
     job.unpublish
-    redirect_to(:admin_list_jobs)
-  end
-
-  def expire
-    job = Job.find_completed(params[:admin_job_id])
-    job.expire
-    redirect_to(:admin_list_jobs)
-  end
-
-  def unexpire
-    job = Job.find_completed(params[:admin_job_id])
-    job.unexpire
-    redirect_to(:admin_list_jobs)
-  end
-
-  def incomplete
-    job = Job.find(params[:admin_job_id])
-    job.incomplete
     redirect_to(:admin_list_jobs)
   end
 

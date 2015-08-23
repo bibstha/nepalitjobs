@@ -3,27 +3,12 @@ table.table.table-striped
     tr
       th Title
       th Company
-      th Completed At
       th Published At
+      th Actions
   tbody
     - @jobs.each do |job|
       tr
         td = link_to(job.title, admin_job_path(job))
         td = job.company_name
-        td = job.completed_at
         td = job.published_at
         td
-          - if job.completed_at?
-            => link_to "Make Incomplete", admin_job_incomplete_path(job), method: :post, class: "btn btn-xs btn-default"
-
-          - if job.publishable?
-            => link_to "Publish", admin_job_publish_path(job), method: :post, class: "btn btn-xs btn-default"
-          - elsif job.published_at?
-            => link_to "Unpublish", admin_job_unpublish_path(job), method: :post, class: "btn btn-xs btn-default"
-
-          - if job.expired?
-            => link_to "Unexpire", admin_job_unexpire_path(job), method: :post, class: "btn btn-xs btn-default"
-          - else
-            => link_to "Expire", admin_job_expire_path(job), method: :post, class: "btn btn-xs btn-default"
-
-          => link_to "Delete", admin_job_path(job), method: :delete, class: "btn btn-xs btn-default"

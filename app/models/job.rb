@@ -10,7 +10,7 @@ class Job < ActiveRecord::Base
 
   class << self
     def latest_jobs
-      where(expired: false).where.not(published_at: nil).order(published_at: :desc)
+      where.not(published_at: nil).order(published_at: :desc)
       # jobs.limit(30) if all
     end
 
@@ -23,25 +23,23 @@ class Job < ActiveRecord::Base
     end
   end
 
-  def complete
-    update(email_verification_token: SecureRandom.uuid)
+  def email_verified?
+    email_status == "verified"
+  end
+
+  # A user marks his job as 'ready'
+  def send_verification_email
+    update!(email_status: "sent", email_verification_token: SecureRandom.uuid)
     JobMailer.confirm_email(self).deliver!
   end
 
+  # A user has verified his email and decideds to publish it
   def publish
     update!(email_status: "verified", published_at: Time.now.utc)
   end
 
   def unpublish
     self.update!(published_at: nil)
-  end
-
-  def expire
-    self.update!(expired: true)
-  end
-
-  def unexpire
-    self.update!(expired: false)
   end
 
   def description_pretty
