@@ -43,3 +43,7 @@ body {
 .preview-actions {
   margin-top: 50px;
 }
+
+.job-description, .job-how-to-apply {
+  line-height: 1.6em;
+}

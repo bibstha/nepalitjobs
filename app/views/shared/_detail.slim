@@ -8,9 +8,10 @@ div.page-header
       Location: #{@job.address} <br>
       #{link_to @job.company_url, @job.company_url}
 
-p== @job.description_pretty
+.job-description
+  == @job.description_pretty
 
-div.well
+div.job-how-to-apply.well
   p
     strong> How to Apply?
     | #{{@job.apply_process_pretty}}
