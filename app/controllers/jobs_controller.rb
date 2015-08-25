@@ -58,9 +58,12 @@ class JobsController < ApplicationController
   end
 
   def update
-    job = Job.find_by_id_and_edit_token!(params[:id], params[:job][:edit_token])
-    job.update!(job_params)
-    redirect_to(preview_job_path(job, edit_token: job.edit_token))
+    @job = Job.find_by_id_and_edit_token!(params[:id], params[:job][:edit_token])
+    if @job.update(job_params)
+      redirect_to(preview_job_path(@job, edit_token: @job.edit_token))
+    else
+      render :edit
+    end
   end
 
   private

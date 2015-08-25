@@ -7,6 +7,8 @@ class Job < ActiveRecord::Base
   belongs_to :category
   validates_presence_of(:title, :address, :description, :apply_process,
                         :company_name, :company_url, :company_email)
+  validates_format_of(:company_email,
+                      with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i)
 
   class << self
     def latest_jobs
