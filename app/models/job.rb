@@ -23,7 +23,7 @@ class Job < ActiveRecord::Base
     end
 
     def search(term)
-      require 'html/sanitizer'
+      require "html/sanitizer"
       sanitized_term = HTML::FullSanitizer.new.sanitize(term)
       __elasticsearch__.search(sanitized_term).records.to_a.delete_if { |job| job.published_at.nil? }
     end
@@ -49,12 +49,16 @@ class Job < ActiveRecord::Base
   end
 
   def description_pretty
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true)
+    markdown = Redcarpet::Markdown.new(safe_renderer, autolink: true)
     markdown.render(description)
   end
 
   def apply_process_pretty
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true)
+    markdown = Redcarpet::Markdown.new(safe_renderer, autolink: true)
     markdown.render(apply_process)
+  end
+
+  def safe_renderer
+    @safe_renderer ||= Redcarpet::Render::HTML.new(escape_html: true, no_images: true)
   end
 end
