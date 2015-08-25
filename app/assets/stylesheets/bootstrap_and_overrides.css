@@ -22,17 +22,18 @@
 
 body {
   margin-bottom: 90px;
+  font-size: 16px;
 }
 
 .job_teaser {
   border-bottom: 1px solid #cccccc;
   padding-top: 9px;
   padding-bottom: 9px;
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 
 .about {
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 
 .about p {
